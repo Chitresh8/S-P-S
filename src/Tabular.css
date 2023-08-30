@@ -1,0 +1,16 @@
+.table {
+  border: 5px double rgb(5, 44, 21);
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.table > tr,
+td,
+th {
+  text-align: center;
+  border: 2px groove rgb(5, 44, 21);
+  width: 200px;
+  cursor: pointer;
+}
+.tables {
+  width: 200px;
+}

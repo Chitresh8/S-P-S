@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useState } from "react";
+import { data } from "./utils";
+import Tabular from "./Tabular";
 
-function App() {
+const App = () => {
+  const [tableData, setTableData] = useState(data);
+  const [property, setProperty] = useState("");
+
+  const inputClickHandler = (event) => {
+    setProperty(event.target.value);
+  };
+  const searchClickHandler = (event) => {
+    const mobiles = data.filter(function (el) {
+      return el.brand === property;
+    });
+    console.log(mobiles);
+    setTableData(mobiles);
+  };
+
+  const resetClickHandler = (event) => {
+    setProperty("");
+    setTableData(data);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <header class="header">SmartPhones and it's Spec's </header>
+      <p>Tabular column for Mobile Specifications</p>
+      <div className="Input">
+        <input
+          type="text"
+          name="Input"
+          value={property}
+          onChange={inputClickHandler}
+        />
+
+        <button onClick={searchClickHandler}>Search</button>
+        <button onClick={resetClickHandler}>Reset</button>
+        <Tabular tablesData={tableData} />
+      </div>
+      <footer>Powered by SAW</footer>
     </div>
   );
-}
-
+};
 export default App;
